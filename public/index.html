@@ -3,8 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Kanbangular</title>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body>
-  <h1>Hello World</h1>
+<body ng-app="myApp">
+
+  <header id="header">
+    <h1>Work Status</h1>
+  </header>
+
+  <section>
+  <div class="wrapper">
+    <div class="column left">
+      <h2 class="work status">Queue</h2>
+      <div class="card">Card 1</div>
+    </div>
+    <div class="column middle">
+    <h2 class="work status">In Progress</h2>
+    </div>
+    <div class="column right">
+      <h2 class="work status">Done</h2>
+    </div>
+  </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
 </body>
 </html>

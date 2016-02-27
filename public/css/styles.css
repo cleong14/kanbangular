@@ -1,0 +1,61 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: gray;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  
+}
+
+header {
+  text-align: center;
+  font-family: arial;
+}
+
+section {
+  height: 100%;
+}
+
+.wrapper {
+  height: 100%;
+}
+
+.column {
+  width: 33%;
+  height: 100%;
+  float: left;
+  padding: 10px;
+}
+
+.column.left {
+  background-color: red;
+}
+
+.column.middle {
+  background-color: blue;
+}
+
+.column.right {
+  background-color: purple;
+}
+
+.work.status {
+  text-align: center;
+  font-family: arial;
+  font-weight: bold;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  background-color: orange;
+  text-align: center;
+  font-family: arial;
+  font-weight: bold;
+}
