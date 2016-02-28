@@ -10,12 +10,20 @@
   <header id="header">
     <h1>Work Status</h1>
   </header>
+  
+
 
   <section>
   <div class="wrapper">
     <div class="column left">
       <h2 class="work status">Queue</h2>
-      <div class="card">Card 1</div>
+      <div class="card" ng-controller="MyController">
+        <ol>
+          <li ng-repeat="queueList in queueLists">
+            <h4 class="card_title" ng-click="">{{queueList.title}}</h4>
+          </li>
+        </ol>
+      </div>
     </div>
     <div class="column middle">
     <h2 class="work status">In Progress</h2>
@@ -26,6 +34,15 @@
   </div>
   </section>
 
+  <div ng-view></div>
+
+  Version {{ version }}
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.js"></script>
+  <script src="/js/myApp.js" type="text/javascript"></script>
+  <script src="/js/constants.js" type="text/javascript"></script>
+  <script src="/js/services.js" type="text/javascript"></script>
+  <script src="/js/controllers.js" type="text/javascript"></script>
 </body>
 </html>
