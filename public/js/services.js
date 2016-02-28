@@ -89,8 +89,6 @@ function QueueService () {
   this.updateStatus = function (status, $index, currentArr) {
     var listArr = this.queueLists;
 
-    // console.log(this.queueLists[$index]);
-
     if (status === 'Queue') {
       queueLists.push(currentArr[$index]);
       currentArr.splice($index, 1);

@@ -1,10 +1,13 @@
-angular.module('myApp', []);
+angular.module('myApp', ['ngRoute']);
 
 var myApp = angular.module('myApp');
 
 myApp
-  .config(function () {
+  .config(function ($routeProvider) {
     // set up configuration
+
+    // Routes
+    
   })
   .run([
     '$rootScope',
