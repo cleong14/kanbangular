@@ -47,6 +47,10 @@ function QueueService () {
     }
   ];
 
+  var progressLists = this.progressLists = [
+
+  ];
+
   this.addCard = function (title, priority, createdBy, assignedTo) {
     var newCard = {
       cardNumber: 'Card-Id: ' + ++cardNumber,
@@ -56,7 +60,6 @@ function QueueService () {
       createdBy: 'Created By: ' + createdBy,
       assignedTo: 'Assigned To: ' + assignedTo
     };
-    console.log('working');
     queueLists.push(newCard);
   };
 
@@ -64,11 +67,34 @@ function QueueService () {
     return queueLists;
   };
 
+  this.getProgressLists = function () {
+    return progressLists;
+  };
+
   this.getCard = function (index) {
     if (index < 0 || index >= queueLists.length) {
       return null;
     }
-
     return queueLists[index];
+  };
+
+  this.updateStatus = function (status, $index) {
+    var listArr = this.queueLists;
+
+    console.log(this.queueLists[$index]);
+
+    if (status === 'Queue') {
+
+    }
+
+    if (status === 'In Progress') {
+      console.log(progressLists);
+      progressLists.push(this.queueLists[$index]);
+      console.log(progressLists);
+    }
+
+    if (status === 'Done') {
+
+    }
   };
 }

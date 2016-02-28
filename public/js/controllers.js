@@ -6,5 +6,6 @@ myApp.controller('MyController', [
   function($scope, QueueService) {
     $scope.queueLists = QueueService.getQueueLists();
     $scope.QueueService = QueueService;
+    $scope.progressLists = QueueService.getProgressLists();
   }
 ]);
