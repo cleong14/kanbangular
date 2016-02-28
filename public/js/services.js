@@ -7,7 +7,7 @@ function QueueService () {
   var low = 'Low';
   var medium = 'Medium';
   var high = 'High';
-  var queue = 'Queue';
+  var blocker = 'Blocker';
   var progress = 'In Progress';
   var done = 'Done';
   var myself = 'Chaz';
@@ -17,7 +17,7 @@ function QueueService () {
       cardNumber: 'Card-Id: ' + ++cardNumber,
       title: 'Wash Clothes',
       priority: 'Priority: '+ low,
-      status: 'Status: ' + queue,
+      status: 'Status: Queue',
       createdBy: 'Created By: ' + myself,
       assignedTo: 'Assigned To: ' + myself
     },
@@ -25,7 +25,7 @@ function QueueService () {
       cardNumber: 'Card-Id: ' + ++cardNumber,
       title: 'Walk the Dog',
       priority: 'Priority: '+ high,
-      status: 'Status: ' + queue,
+      status: 'Status: Queue',
       createdBy: 'Created By: ' + myself,
       assignedTo: 'Assigned To: ' + myself
     },
@@ -33,7 +33,7 @@ function QueueService () {
       cardNumber: 'Card-Id: ' + ++cardNumber,
       title: 'Wash Car',
       priority: 'Priority: '+ medium,
-      status: 'Status: ' + queue,
+      status: 'Status: Queue',
       createdBy: 'Created By: ' + myself,
       assignedTo: 'Assigned To: ' + myself
     },
@@ -41,21 +41,23 @@ function QueueService () {
       cardNumber: 'Card-Id: ' + ++cardNumber,
       title: 'Code Code Code',
       priority: 'Priority: '+ high,
-      status: 'Status: ' + queue,
+      status: 'Status: Queue',
       createdBy: 'Created By: ' + myself,
       assignedTo: 'Assigned To: ' + myself
     }
   ];
 
-  this.addCard = function (title, priority, status, createdBy, assignedTo) {
+  this.addCard = function (title, priority, createdBy, assignedTo) {
     var newCard = {
       cardNumber: 'Card-Id: ' + ++cardNumber,
       title: title,
       priority: 'Priority: '+ priority,
-      status: status,
-      createdBy: createdBy,
-      assignedTo: assignedTo
+      status: 'Status: Queue',
+      createdBy: 'Created By: ' + createdBy,
+      assignedTo: 'Assigned To: ' + assignedTo
     };
+    console.log('working');
+    queueLists.push(newCard);
   };
 
   this.getQueueLists = function () {

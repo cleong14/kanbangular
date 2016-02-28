@@ -67,3 +67,11 @@ ol {
 h4 {
   background-color: pink;
 }
+
+form {
+  text-align: center;
+}
+
+#version {
+  text-align: center;
+}
