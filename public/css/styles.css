@@ -59,3 +59,19 @@ section {
   font-family: arial;
   font-weight: bold;
 }
+
+ol {
+  text-align: left;
+}
+
+h4 {
+  background-color: pink;
+}
+
+form {
+  text-align: center;
+}
+
+#version {
+  text-align: center;
+}
