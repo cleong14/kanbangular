@@ -34,9 +34,9 @@
               <li class="card_created_by">{{ queueList.createdBy }}</li>
               <li class="card_assigned_to">{{ queueList.assignedTo }}</li>
               <li class="card_card_number">{{ queueList.cardNumber }}</li>
-              <button ng-click="QueueService.updateStatus('Queue', $index);">Queue</button>
-              <button ng-click="QueueService.updateStatus('In Progress', $index);">In Progress</button>
-              <button ng-click="QueueService.updateStatus('Done', $index);">Done</button>
+              <button ng-click="QueueService.updateStatus('Queue', $index, queueLists);">Queue</button>
+              <button ng-click="QueueService.updateStatus('In Progress', $index, queueLists);">In Progress</button>
+              <button ng-click="QueueService.updateStatus('Done', $index, queueLists);">Done</button>
             </ul>
           </li>
         </ol>
@@ -55,9 +55,9 @@
               <li class="card_created_by">{{ progressList.createdBy }}</li>
               <li class="card_assigned_to">{{ progressList.assignedTo }}</li>
               <li class="card_card_number">{{ progressList.cardNumber }}</li>
-              <button ng-click="QueueService.updateStatus('Queue', $index);">Queue</button>
-              <button ng-click="QueueService.updateStatus('In Progress', $index);">In Progress</button>
-              <button ng-click="QueueService.updateStatus('Done', $index);">Done</button>
+              <button ng-click="QueueService.updateStatus('Queue', $index, progressLists);">Queue</button>
+              <button ng-click="QueueService.updateStatus('In Progress', $index, progressLists);">In Progress</button>
+              <button ng-click="QueueService.updateStatus('Done', $index, progressLists);">Done</button>
             </ul>
           </li>
         </ol>
@@ -66,6 +66,23 @@
 
     <div class="column right">
       <h2 class="work status">Done</h2>
+      <div class="card">
+        <ol>
+          <li ng-repeat="doneList in doneLists track by $index">
+            <h4 class="card_title" ng-click="">{{ doneList.title }}</h4>
+            <ul>
+              <li class="card_priority" ng-click="">{{ doneList.priority }}</li>
+              <li class="card_status">{{ doneList.status }}</li>
+              <li class="card_created_by">{{ doneList.createdBy }}</li>
+              <li class="card_assigned_to">{{ doneList.assignedTo }}</li>
+              <li class="card_card_number">{{ doneList.cardNumber }}</li>
+              <button ng-click="QueueService.updateStatus('Queue', $index, doneLists);">Queue</button>
+              <button ng-click="QueueService.updateStatus('In Progress', $index, doneLists);">In Progress</button>
+              <button ng-click="QueueService.updateStatus('Done', $index, doneLists);">Done</button>
+            </ul>
+          </li>
+        </ol>
+      </div>
     </div>
 
   </div>

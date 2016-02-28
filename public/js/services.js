@@ -51,6 +51,10 @@ function QueueService () {
 
   ];
 
+  var doneLists = this.doneLists = [
+
+  ];
+
   this.addCard = function (title, priority, createdBy, assignedTo) {
     var newCard = {
       cardNumber: 'Card-Id: ' + ++cardNumber,
@@ -71,6 +75,10 @@ function QueueService () {
     return progressLists;
   };
 
+  this.getDoneLists = function () {
+    return doneLists;
+  };
+
   this.getCard = function (index) {
     if (index < 0 || index >= queueLists.length) {
       return null;
@@ -78,23 +86,25 @@ function QueueService () {
     return queueLists[index];
   };
 
-  this.updateStatus = function (status, $index) {
+  this.updateStatus = function (status, $index, currentArr) {
     var listArr = this.queueLists;
 
-    console.log(this.queueLists[$index]);
+    // console.log(this.queueLists[$index]);
 
     if (status === 'Queue') {
-
+      queueLists.push(currentArr[$index]);
+      currentArr.splice($index, 1);
     }
 
     if (status === 'In Progress') {
-      console.log(progressLists);
-      progressLists.push(this.queueLists[$index]);
-      console.log(progressLists);
+      progressLists.push(currentArr[$index]);
+      console.log($index);
+      currentArr.splice($index, 1);
     }
 
     if (status === 'Done') {
-
+      doneLists.push(currentArr[$index]);
+      currentArr.splice($index, 1);
     }
   };
 }
