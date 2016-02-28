@@ -10,8 +10,6 @@
   <header id="header">
     <h1>Work Status</h1>
   </header>
-  
-
 
   <section>
   <div class="wrapper">
@@ -20,7 +18,14 @@
       <div class="card" ng-controller="MyController">
         <ol>
           <li ng-repeat="queueList in queueLists">
-            <h4 class="card_title" ng-click="">{{queueList.title}}</h4>
+            <h4 class="card_title" ng-click="">{{ queueList.title }}</h4>
+            <ul>
+              <li class="card_priority" ng-click="">{{ queueList.priority }}</li>
+              <li class="card_status">{{ queueList.status }}</li>
+              <li class="card_created_by">{{ queueList.createdBy }}</li>
+              <li class="card_assigned_to">{{ queueList.assignedTo }}</li>
+              <li class="card_card_number">{{ queueList.cardNumber }}</li>
+            </ul>
           </li>
         </ol>
       </div>

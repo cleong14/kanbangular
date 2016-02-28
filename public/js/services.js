@@ -4,47 +4,54 @@ myApp.service('QueueService', [QueueService]);
 
 function QueueService () {
   var cardNumber = 0;
+  var low = 'Low';
+  var medium = 'Medium';
+  var high = 'High';
+  var queue = 'Queue';
+  var progress = 'In Progress';
+  var done = 'Done';
+  var myself = 'Chaz';
 
   var queueLists = this.queueLists = [
     {
-      cardNumber: ++cardNumber,
+      cardNumber: 'Card-Id: ' + ++cardNumber,
       title: 'Wash Clothes',
-      priority: 'medium',
-      status: 'queue',
-      createdBy: 'Chaz',
-      assignedTo: 'Chaz'
+      priority: 'Priority: '+ low,
+      status: 'Status: ' + queue,
+      createdBy: 'Created By: ' + myself,
+      assignedTo: 'Assigned To: ' + myself
     },
     {
-      cardNumber: ++cardNumber,
+      cardNumber: 'Card-Id: ' + ++cardNumber,
       title: 'Walk the Dog',
-      priority: 'high',
-      status: 'queue',
-      createdBy: 'Chaz',
-      assignedTo: 'Chaz'
+      priority: 'Priority: '+ high,
+      status: 'Status: ' + queue,
+      createdBy: 'Created By: ' + myself,
+      assignedTo: 'Assigned To: ' + myself
     },
     {
-      cardNumber: ++cardNumber,
+      cardNumber: 'Card-Id: ' + ++cardNumber,
       title: 'Wash Car',
-      priority: 'medium',
-      status: 'queue',
-      createdBy: 'Chaz',
-      assignedTo: 'Chaz'
+      priority: 'Priority: '+ medium,
+      status: 'Status: ' + queue,
+      createdBy: 'Created By: ' + myself,
+      assignedTo: 'Assigned To: ' + myself
     },
     {
-      cardNumber: ++cardNumber,
+      cardNumber: 'Card-Id: ' + ++cardNumber,
       title: 'Code Code Code',
-      priority: 'high',
-      status: 'queue',
-      createdBy: 'Chaz',
-      assignedTo: 'Chaz'
+      priority: 'Priority: '+ high,
+      status: 'Status: ' + queue,
+      createdBy: 'Created By: ' + myself,
+      assignedTo: 'Assigned To: ' + myself
     }
   ];
 
   this.addCard = function (title, priority, status, createdBy, assignedTo) {
     var newCard = {
-      cardNumber: ++cardNumber,
+      cardNumber: 'Card-Id: ' + ++cardNumber,
       title: title,
-      priority: priority,
+      priority: 'Priority: '+ priority,
       status: status,
       createdBy: createdBy,
       assignedTo: assignedTo
