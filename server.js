@@ -30,6 +30,13 @@ app.get('/cards', function (req, res) {
   db.card.findAll({})
   .then(function(cards) {
     res.json(cards);
+    console.log('===============');
+    for (var i = 0; i < cards.length; i++) {
+      var currentCard = cards[i];
+      console.log(currentCard.dataValues);
+      console.log(currentCard.dataValues.CardNumber);
+      console.log(currentCard.dataValues.Title);
+    }
   });
 });
 
