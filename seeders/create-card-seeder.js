@@ -1,14 +1,9 @@
 'use strict';
 
-var faker = require('faker');
-
-var cardCount = 0;
-
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('cards', [
+    return queryInterface.bulkInsert('Cards', [
       {
-        CardNumber: ++cardCount,
         Title: 'Workout',
         Priority: 'High',
         Status: 'Queue',
@@ -19,8 +14,7 @@ module.exports = {
       },
 
       {
-        CardNumber: ++cardCount,
-        Title: 'Put Sealant on Car',
+        Title: 'Wax Car',
         Priority: 'High',
         Status: 'Queue',
         CreatedBy: 'Chaz Leong',
@@ -30,20 +24,8 @@ module.exports = {
       },
 
       {
-        CardNumber: ++cardCount,
-        Title: 'Buy Airfare',
+        Title: 'Grocery Shop',
         Priority: 'High',
-        Status: 'Queue',
-        CreatedBy: 'Chaz Leong',
-        AssignedTo: 'Chaz Leong',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-
-      {
-        CardNumber: ++cardCount,
-        Title: 'Buy Clothes',
-        Priority: 'Medium',
         Status: 'Queue',
         CreatedBy: 'Chaz Leong',
         AssignedTo: 'Chaz Leong',
@@ -54,6 +36,6 @@ module.exports = {
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('cards', null, {});
+    return queryInterface.bulkDelete('Cards', null, {});
   }
 };

@@ -26,17 +26,30 @@ app.get('/api', function (req, res) {
   res.json(task);
 });
 
-app.get('/cards', function (req, res) {
-  db.card.findAll({})
+app.get('/api/cards', function (req, res) {
+  db.Card.findAll({})
   .then(function(cards) {
     res.json(cards);
     console.log('===============');
     for (var i = 0; i < cards.length; i++) {
       var currentCard = cards[i];
       console.log(currentCard.dataValues);
-      console.log(currentCard.dataValues.CardNumber);
       console.log(currentCard.dataValues.Title);
     }
+  });
+});
+
+app.post('/api/cards', function (req, res) {
+  console.log(req);
+  db.Card.create ({
+    Title: req.body.Title,
+    Priority: req.body.Priority,
+    Status: req.body.Status,
+    CreatedBy: req.body.CreatedBy,
+    AssignedTo: req.body.AssignedTo
+  }).
+  then(function (card) {
+    res.json(card);
   });
 });
 
