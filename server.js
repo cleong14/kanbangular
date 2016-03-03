@@ -12,6 +12,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(express.static(path.resolve(__dirname + '/public')));
 
+app.get('/', function (req, res) {
+  res.render('index');
+});
+
 app.get('/api', function (req, res) {
   var task = [
     {
@@ -30,12 +34,12 @@ app.get('/api/cards', function (req, res) {
   db.Card.findAll({})
   .then(function(cards) {
     res.json(cards);
-    console.log('===============');
-    for (var i = 0; i < cards.length; i++) {
-      var currentCard = cards[i];
-      console.log(currentCard.dataValues);
-      console.log(currentCard.dataValues.Title);
-    }
+    // console.log('===============');
+    // for (var i = 0; i < cards.length; i++) {
+    //   var currentCard = cards[i];
+    //   console.log(currentCard.dataValues);
+      // console.log(currentCard.dataValues.Title);
+    // }
   });
 });
 
