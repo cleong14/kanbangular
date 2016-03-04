@@ -12,6 +12,22 @@ myApp.controller('MyController', [
         $scope.cards = res.data;
       }
     );
+    $scope.addCard = function (title, priority, createdBy, assignedTo) {
+      Cards.createCard({
+        Title: title,
+        Priority: priority,
+        Status: 'Queue',
+        CreatedBy: createdBy,
+        AssignedTo: assignedTo
+      })
+      .then(function(res) {
+        Cards.getCards()
+        .then(function (res) {
+          console.log(res.data);
+          $scope.cards = res.data;
+        });
+      });
+    };
     $scope.updateStatus = function (status, card) {
       card.Status = status;
     };

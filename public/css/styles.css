@@ -13,6 +13,12 @@ body {
   
 }
 
+.task {
+  text-align: center;
+  font-family: arial;
+  font-weight: bold;
+}
+
 header {
   text-align: center;
   font-family: arial;
@@ -69,6 +75,11 @@ h4 {
 }
 
 form {
+  text-align: center;
+}
+
+input {
+  width: 31%;
   text-align: center;
 }
 
