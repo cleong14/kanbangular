@@ -56,8 +56,13 @@ app.post('/api/cards/:id/delete', function (req, res) {
     }
   })
   .then(function (task) {
+    console.log('Deleted!');
     res.json(task);
   });
+});
+
+app.put('/api/cards/:id', function (req, res) {
+  
 });
 
 // create get and post to grab data and post data

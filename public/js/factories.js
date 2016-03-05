@@ -18,6 +18,12 @@ myApp.factory('Cards', [
           '/api/cards',
           data
         );
+      },
+
+      deleteCard: function (id) {
+        return $http.post(
+          '/api/cards/' + id + '/delete'
+        );
       }
     };
   }
