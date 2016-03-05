@@ -32,7 +32,7 @@
       <h2 class="work status">Queue</h2>
       <div class="card">
         <ol>
-          <li ng-repeat="card in cards | filter : {Status: 'Queue'}">
+          <li ng-repeat="card in cards | filter : {Status: 'Queue'} | orderBy: '+id'">
             <h4 class="card_title" ng-click="">{{ card.Title }}</h4>
             <ul>
               <li class="card_priority" ng-click="">{{ card.Priority }}</li>
@@ -55,7 +55,7 @@
       <h2 class="work status">In Progress</h2>
       <div class="card">
         <ol>
-          <li ng-repeat="card in cards | filter : {Status: 'In Progress'}">
+          <li ng-repeat="card in cards | filter : {Status: 'In Progress'} | orderBy: '+id'">
             <h4 class="card_title" ng-click="">{{ card.Title }}</h4>
             <ul>
               <li class="card_priority" ng-click="">{{ card.Priority }}</li>
@@ -78,7 +78,7 @@
       <h2 class="work status">Done</h2>
       <div class="card">
         <ol>
-          <li ng-repeat="card in cards | filter : {Status: 'Done'}">
+          <li ng-repeat="card in cards | filter : {Status: 'Done'} | orderBy: '+id'">
             <h4 class="card_title" ng-click="">{{ card.Title }}</h4>
             <ul>
               <li class="card_priority" ng-click="">{{ card.Priority }}</li>

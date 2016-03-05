@@ -62,7 +62,24 @@ app.post('/api/cards/:id/delete', function (req, res) {
 });
 
 app.put('/api/cards/:id', function (req, res) {
-  
+  var newValues = {
+    Title: req.body.Title,
+    Priority: req.body.Priority,
+    Status: req.body.Status,
+    CreatedBy: req.body.CreatedBy,
+    AssignedTo: req.body.AssignedTo
+  };
+
+  var query = {
+    where: { id: req.params.id },
+    returning: true
+  };
+
+  db.Card.update(newValues, query)
+    .then(function (task) {
+      res.json(task);
+    }
+  );
 });
 
 // create get and post to grab data and post data
