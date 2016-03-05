@@ -40,11 +40,11 @@
               <li class="card_created_by">{{ card.CreatedBy }}</li>
               <li class="card_assigned_to">{{ card.AssignedTo }}</li>
               <li class="card_card_number">Card-Id #{{ card.id }}</li>
-              <button ng-click="updateStatus('Queue', card);">Queue</button>
-              <button ng-click="updateStatus('In Progress', card);">In Progress</button>
-              <button ng-click="updateStatus('Done', card);">Done</button>
+              <button ng-click="updateStatus(card.id, 'Queue', card);">Queue</button>
+              <button ng-click="updateStatus(card.id, 'In Progress', card);">In Progress</button>
+              <button ng-click="updateStatus(card.id, 'Done', card);">Done</button>
               <button ng-click="delete(card.id);">Delete</button>
-              <button ng-click="update();">Update</button>
+              <button ng-click="update(card.id);">Update</button>
             </ul>
           </li>
         </ol>
@@ -63,11 +63,11 @@
               <li class="card_created_by">{{ card.CreatedBy }}</li>
               <li class="card_assigned_to">{{ card.AssignedTo }}</li>
               <li class="card_card_number">Card-Id #{{ card.id }}</li>
-              <button ng-click="updateStatus('Queue', card);">Queue</button>
-              <button ng-click="updateStatus('In Progress', card);">In Progress</button>
-              <button ng-click="updateStatus('Done', card);">Done</button>
-              <button ng-click="delete();">Delete</button>
-              <button ng-click="update();">Update</button>
+              <button ng-click="updateStatus(card.id, 'Queue', card);">Queue</button>
+              <button ng-click="updateStatus(card.id, 'In Progress', card);">In Progress</button>
+              <button ng-click="updateStatus(card.id, 'Done', card);">Done</button>
+              <button ng-click="delete(card.id);">Delete</button>
+              <button ng-click="update(card.id);">Update</button>
             </ul>
           </li>
         </ol>
@@ -86,11 +86,11 @@
               <li class="card_created_by">{{ card.CreatedBy }}</li>
               <li class="card_assigned_to">{{ card.AssignedTo }}</li>
               <li class="card_card_number">Card-Id #{{ card.id }}</li>
-              <button ng-click="updateStatus('Queue', card);">Queue</button>
-              <button ng-click="updateStatus('In Progress', card);">In Progress</button>
-              <button ng-click="updateStatus('Done', card);">Done</button>
-              <button ng-click="delete();">Delete</button>
-              <button ng-click="update();">Update</button>
+              <button ng-click="updateStatus(card.id, 'Queue', card);">Queue</button>
+              <button ng-click="updateStatus(card.id, 'In Progress', card);">In Progress</button>
+              <button ng-click="updateStatus(card.id, 'Done', card);">Done</button>
+              <button ng-click="delete(card.id);">Delete</button>
+              <button ng-click="update(card.id);">Update</button>
             </ul>
           </li>
         </ol>

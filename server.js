@@ -62,13 +62,7 @@ app.post('/api/cards/:id/delete', function (req, res) {
 });
 
 app.put('/api/cards/:id', function (req, res) {
-  var newValues = {
-    Title: req.body.Title,
-    Priority: req.body.Priority,
-    Status: req.body.Status,
-    CreatedBy: req.body.CreatedBy,
-    AssignedTo: req.body.AssignedTo
-  };
+  var newValues = req.body;
 
   var query = {
     where: { id: req.params.id },
