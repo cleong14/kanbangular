@@ -17,20 +17,6 @@ app.get('/', function (req, res) {
   res.render('index');
 });
 
-app.get('/api', function (req, res) {
-  var task = [
-    {
-      cardNumber: 'Card-Id: 5',
-      title: 'GYMMMMMMMMM',
-      priority: 'Priority: High',
-      status: 'Status: Queue',
-      createdBy: 'Created By: Chaz',
-      assignedTo: 'Assigned To: Chaz'
-    }
-  ];
-  res.json(task);
-});
-
 app.get('/api/cards', function (req, res) {
   db.Card.findAll({})
   .then(function(cards) {
@@ -38,18 +24,45 @@ app.get('/api/cards', function (req, res) {
   });
 });
 
+app.get('/api/cards/:id', function (req, res) {
+  db.Card.find({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(function (task) {
+    res.json(task);
+  });
+});
+
 app.post('/api/cards', function (req, res) {
   console.log(req);
-  db.Card.create ({
+  db.Card.create({
     Title: req.body.Title,
     Priority: req.body.Priority,
     Status: req.body.Status,
     CreatedBy: req.body.CreatedBy,
     AssignedTo: req.body.AssignedTo
-  }).
-  then(function (card) {
+  })
+  .then(function (card) {
     res.json(card);
   });
+});
+
+app.post('/api/cards/:id/delete', function (req, res) {
+  db.Card.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(function (task) {
+    console.log('Deleted!');
+    res.json(task);
+  });
+});
+
+app.put('/api/cards/:id', function (req, res) {
+  
 });
 
 // create get and post to grab data and post data
