@@ -26,7 +26,9 @@ myApp.factory('Cards', [
         );
       },
 
-      updateCard: function (id) {
+      updateCard: function (id, title, priority, createdBy, assignedTo) {
+        console.log(id, title, priority, createdBy, assignedTo);
+
         var data = {
           Title: title,
           Priority: priority,
@@ -34,7 +36,8 @@ myApp.factory('Cards', [
           AssignedTo: assignedTo
         };
         return $http.put(
-          '/api/cards/' + id
+          '/api/cards/' + id,
+          data
         );
       },
 

@@ -8,6 +8,10 @@ myApp.controller('MyController', [
     $scope.cards = [];
     $scope.currentCard = {};
 
+    $scope.user = {
+      name: 'awesome user'
+    };
+
     Cards.getCards()
       .then(function (res) {
         console.log(res.data);
@@ -43,8 +47,8 @@ myApp.controller('MyController', [
       });
     };
 
-    $scope.update = function (id) {
-      Cards.updateCard(id)
+    $scope.update = function (id, title, priority, createdBy, assignedTo) {
+      Cards.updateCard(id, title, priority, createdBy, assignedTo)
       .then(function (res) {
         Cards.getCards()
         .then(function (res) {

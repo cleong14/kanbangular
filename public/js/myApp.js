@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngRoute']);
+angular.module('myApp', ['xeditable']);
 
 var myApp = angular.module('myApp');
 
@@ -12,7 +12,9 @@ myApp
   .run([
     '$rootScope',
     'APP_VERSION',
-    function ($rootScope, APP_VERSION) {
+    'editableOptions',
+    function ($rootScope, APP_VERSION, editableOptions) {
       $rootScope.version = APP_VERSION;
+      // editableOptions.theme = 'bs3';
     }
   ]);
