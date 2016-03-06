@@ -62,7 +62,18 @@ app.post('/api/cards/:id/delete', function (req, res) {
 });
 
 app.put('/api/cards/:id', function (req, res) {
-  
+  var newValues = req.body;
+
+  var query = {
+    where: { id: req.params.id },
+    returning: true
+  };
+
+  db.Card.update(newValues, query)
+    .then(function (task) {
+      res.json(task);
+    }
+  );
 });
 
 // create get and post to grab data and post data

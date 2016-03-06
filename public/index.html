@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Kanbangular</title>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/xeditable.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body ng-app="myApp" ng-controller="MyController">
@@ -32,19 +34,19 @@
       <h2 class="work status">Queue</h2>
       <div class="card">
         <ol>
-          <li ng-repeat="card in cards | filter : {Status: 'Queue'}">
-            <h4 class="card_title" ng-click="">{{ card.Title }}</h4>
+          <li ng-repeat="card in cards | filter : {Status: 'Queue'} | orderBy: '+id'">
+            <h4 class="card_title" ng-click=""><a href="#" ng-model="card.Title" editable-text="card.Title">{{ card.Title || "empty" }}</a></h4>
             <ul>
-              <li class="card_priority" ng-click="">{{ card.Priority }}</li>
-              <li class="card_status">{{ card.Status }}</li>
-              <li class="card_created_by">{{ card.CreatedBy }}</li>
-              <li class="card_assigned_to">{{ card.AssignedTo }}</li>
+              <li class="card_priority" ng-click=""><a href="#" editable-text="card.Priority">{{ card.Priority || "empty" }}</a></li>
+              <li class="card_status"><a href="#" editable-text="card.Status">{{ card.Status || "empty" }}</a></li>
+              <li class="card_created_by"><a href="#" editable-text="card.CreatedBy">{{ card.CreatedBy || "empty" }}</a></li>
+              <li class="card_assigned_to"><a href="#" editable-text="card.AssignedTo">{{ card.AssignedTo || "empty" }}</a></li>
               <li class="card_card_number">Card-Id #{{ card.id }}</li>
-              <button ng-click="updateStatus('Queue', card);">Queue</button>
-              <button ng-click="updateStatus('In Progress', card);">In Progress</button>
-              <button ng-click="updateStatus('Done', card);">Done</button>
+              <button ng-click="updateStatus(card.id, 'Queue', card);">Queue</button>
+              <button ng-click="updateStatus(card.id, 'In Progress', card);">In Progress</button>
+              <button ng-click="updateStatus(card.id, 'Done', card);">Done</button>
               <button ng-click="delete(card.id);">Delete</button>
-              <button ng-click="update();">Update</button>
+              <button ng-click="update(card.id, card.Title, card.Priority, card.CreatedBy, card.AssignedTo);">Update</button>
             </ul>
           </li>
         </ol>
@@ -55,19 +57,19 @@
       <h2 class="work status">In Progress</h2>
       <div class="card">
         <ol>
-          <li ng-repeat="card in cards | filter : {Status: 'In Progress'}">
-            <h4 class="card_title" ng-click="">{{ card.Title }}</h4>
+          <li ng-repeat="card in cards | filter : {Status: 'In Progress'} | orderBy: '+id'">
+            <h4 class="card_title" ng-click=""><a href="#" editable-text="card.Title">{{ card.Title || "empty" }}</a></h4>
             <ul>
-              <li class="card_priority" ng-click="">{{ card.Priority }}</li>
-              <li class="card_status">{{ card.Status }}</li>
-              <li class="card_created_by">{{ card.CreatedBy }}</li>
-              <li class="card_assigned_to">{{ card.AssignedTo }}</li>
+              <li class="card_priority" ng-click=""><a href="#" editable-text="card.Priority">{{ card.Priority || "empty" }}</a></li>
+              <li class="card_status"><a href="#" editable-text="card.Status">{{ card.Status || "empty" }}</a></li>
+              <li class="card_created_by"><a href="#" editable-text="card.CreatedBy">{{ card.CreatedBy || "empty" }}</a></li>
+              <li class="card_assigned_to"><a href="#" editable-text="card.AssignedTo">{{ card.AssignedTo || "empty" }}</a></li>
               <li class="card_card_number">Card-Id #{{ card.id }}</li>
-              <button ng-click="updateStatus('Queue', card);">Queue</button>
-              <button ng-click="updateStatus('In Progress', card);">In Progress</button>
-              <button ng-click="updateStatus('Done', card);">Done</button>
-              <button ng-click="delete();">Delete</button>
-              <button ng-click="update();">Update</button>
+              <button ng-click="updateStatus(card.id, 'Queue', card);">Queue</button>
+              <button ng-click="updateStatus(card.id, 'In Progress', card);">In Progress</button>
+              <button ng-click="updateStatus(card.id, 'Done', card);">Done</button>
+              <button ng-click="delete(card.id);">Delete</button>
+              <button ng-click="update(card.id, card.Title, card.Priority, card.CreatedBy, card.AssignedTo);">Update</button>
             </ul>
           </li>
         </ol>
@@ -78,19 +80,19 @@
       <h2 class="work status">Done</h2>
       <div class="card">
         <ol>
-          <li ng-repeat="card in cards | filter : {Status: 'Done'}">
-            <h4 class="card_title" ng-click="">{{ card.Title }}</h4>
+          <li ng-repeat="card in cards | filter : {Status: 'Done'} | orderBy: '+id'">
+            <h4 class="card_title" ng-click=""><a href="#" editable-text="card.Title">{{ card.Title || "empty" }}</a></h4>
             <ul>
-              <li class="card_priority" ng-click="">{{ card.Priority }}</li>
-              <li class="card_status">{{ card.Status }}</li>
-              <li class="card_created_by">{{ card.CreatedBy }}</li>
-              <li class="card_assigned_to">{{ card.AssignedTo }}</li>
+              <li class="card_priority" ng-click=""><a href="#" editable-text="card.Priority">{{ card.Priority || "empty" }}</a></li>
+              <li class="card_status"><a href="#" editable-text="card.Status">{{ card.Status || "empty" }}</a></li>
+              <li class="card_created_by"><a href="#" editable-text="card.CreatedBy">{{ card.CreatedBy || "empty" }}</a></li>
+              <li class="card_assigned_to"><a href="#" editable-text="card.AssignedTo">{{ card.AssignedTo || "empty" }}</a></li>
               <li class="card_card_number">Card-Id #{{ card.id }}</li>
-              <button ng-click="updateStatus('Queue', card);">Queue</button>
-              <button ng-click="updateStatus('In Progress', card);">In Progress</button>
-              <button ng-click="updateStatus('Done', card);">Done</button>
-              <button ng-click="delete();">Delete</button>
-              <button ng-click="update();">Update</button>
+              <button ng-click="updateStatus(card.id, 'Queue', card);">Queue</button>
+              <button ng-click="updateStatus(card.id, 'In Progress', card);">In Progress</button>
+              <button ng-click="updateStatus(card.id, 'Done', card);">Done</button>
+              <button ng-click="delete(card.id);">Delete</button>
+              <button ng-click="update(card.id, card.Title, card.Priority, card.CreatedBy, card.AssignedTo);">Update</button>
             </ul>
           </li>
         </ol>
@@ -106,6 +108,8 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  <script src="/bower_components/angular-xeditable/dist/js/xeditable.min.js"></script>
   <script src="/js/myApp.js" type="text/javascript"></script>
   <script src="/js/constants.js" type="text/javascript"></script>
   <script src="/js/services.js" type="text/javascript"></script>

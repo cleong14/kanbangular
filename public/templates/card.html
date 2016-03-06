@@ -1,0 +1,38 @@
+<form>
+  <input type="text" ng-model="title" placeholder="Task Title">
+  <br>
+  <input type="text" ng-model="priority" placeholder="Priority (Low/Medium/High/Blocker)">
+  <br>
+  <input type="text" ng-model="createdBy" placeholder="Created By (Full Name)">
+  <br>
+  <input type="text" ng-model="assignedTo" placeholder="Assigned To (Full Name)">
+  <br>
+  <button ng-click="addCard(title, priority, createdBy, assignedTo); title=''; priority=''; createdBy=''; assignedTo='';">Add Task</button>
+</form>
+
+
+
+
+
+<div class="column left">
+  <h2 class="work status">Queue</h2>
+  <div class="card">
+    <ol>
+      <li ng-repeat="card in cards | filter : {Status: 'Queue'} | orderBy: '+id'">
+        <h4 class="card_title" ng-click="">{{ card.Title }}</h4>
+        <ul>
+          <li class="card_priority" ng-click="">{{ card.Priority }}</li>
+          <li class="card_status">{{ card.Status }}</li>
+          <li class="card_created_by">{{ card.CreatedBy }}</li>
+          <li class="card_assigned_to">{{ card.AssignedTo }}</li>
+          <li class="card_card_number">Card-Id #{{ card.id }}</li>
+          <button ng-click="updateStatus('Queue', card);">Queue</button>
+          <button ng-click="updateStatus('In Progress', card);">In Progress</button>
+          <button ng-click="updateStatus('Done', card);">Done</button>
+          <button ng-click="delete(card.id);">Delete</button>
+          <button ng-click="update(card.id);">Update</button>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</div>
