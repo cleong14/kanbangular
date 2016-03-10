@@ -21,7 +21,7 @@ body {
   font-weight: bold;
 }
 
-header {
+.header {
   text-shadow: 3px 3px #8A8A8A;
   color: white;
   text-align: center;
@@ -91,6 +91,11 @@ input {
 }
 
 #version {
+  color: white;
+  text-align: center;
+}
+
+#error_page {
   color: white;
   text-align: center;
 }

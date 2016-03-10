@@ -8,10 +8,6 @@ myApp.controller('MyController', [
     $scope.cards = [];
     $scope.currentCard = {};
 
-    $scope.user = {
-      name: 'awesome user'
-    };
-
     Cards.getCards()
       .then(function (res) {
         console.log(res.data);
