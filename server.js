@@ -4,7 +4,9 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var sequelize = require('sequelize');
 var db = require('./models');
-var faker = require('faker');
+var passport = require('passport');
+// var config = require('./config');
+var methodOverride = require('method-override');
 
 var app = express();
 

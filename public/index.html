@@ -10,7 +10,7 @@
 <body ng-app="myApp" ng-controller="MyController">
 
   <header id="header">
-    <h1>Work Status</h1>
+    <h1>Project Status</h1>
   </header>
 
   <h2 class="task">New Task</h2>
@@ -34,7 +34,7 @@
       <h2 class="work status">Queue</h2>
       <div class="card">
         <ol>
-          <li ng-repeat="card in cards | filter : {Status: 'Queue'} | orderBy: '+id'">
+          <li class="single_card" ng-repeat="card in cards | filter : {Status: 'Queue'} | orderBy: '+id'">
             <h4 class="card_title" ng-click=""><a href="#" ng-model="card.Title" editable-text="card.Title">{{ card.Title || "empty" }}</a></h4>
             <ul>
               <li class="card_priority" ng-click=""><a href="#" editable-text="card.Priority">{{ card.Priority || "empty" }}</a></li>
@@ -57,7 +57,7 @@
       <h2 class="work status">In Progress</h2>
       <div class="card">
         <ol>
-          <li ng-repeat="card in cards | filter : {Status: 'In Progress'} | orderBy: '+id'">
+          <li class="single_card" ng-repeat="card in cards | filter : {Status: 'In Progress'} | orderBy: '+id'">
             <h4 class="card_title" ng-click=""><a href="#" editable-text="card.Title">{{ card.Title || "empty" }}</a></h4>
             <ul>
               <li class="card_priority" ng-click=""><a href="#" editable-text="card.Priority">{{ card.Priority || "empty" }}</a></li>
@@ -80,7 +80,7 @@
       <h2 class="work status">Done</h2>
       <div class="card">
         <ol>
-          <li ng-repeat="card in cards | filter : {Status: 'Done'} | orderBy: '+id'">
+          <li class="single_card" ng-repeat="card in cards | filter : {Status: 'Done'} | orderBy: '+id'">
             <h4 class="card_title" ng-click=""><a href="#" editable-text="card.Title">{{ card.Title || "empty" }}</a></h4>
             <ul>
               <li class="card_priority" ng-click=""><a href="#" editable-text="card.Priority">{{ card.Priority || "empty" }}</a></li>
