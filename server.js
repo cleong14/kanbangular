@@ -23,16 +23,77 @@ app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json({strict: false}));
 
+app.use(passport.initialize());
+
 app.use(express.static(path.resolve(__dirname + '/public')));
 
 app.use(morgan('dev'));
+
+passport.use(new LocalStrategy(
+  function (username, password, done) {
+    var isAuthenticated = authenticate(username, password);
+    isAuthenticated
+    .then(function(user) {
+      if (!user) {
+        return done(null, false);
+      }
+      return done(null, user);
+    });
+  }
+));
+
+passport.serializeUser(function (user, done) {
+  return done(null, user);
+});
+
+passport.deserializeUser(function (user, done) {
+  return done(null, user);
+});
 
 app.get('/', function (req, res) {
   res.render('login');
 });
 
-app.post('/', function (req, res) {
-  
+app.post('/',
+  passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/'
+  })
+);
+
+function authenticate (username, password) {
+  return db.User.findOne({
+    where: {
+      username: username
+    }
+  })
+  .then(function (user) {
+    console.log(user.username, user.password);
+    if (user.password === password) {
+      console.log('exists', user);
+      return user;
+    }
+    return false;
+  })
+  .catch(function (err) {
+    console.log(err);
+  });
+}
+
+function isAuthenticated (req, res, next) {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+  return next();
+}
+console.log(__dirname);
+app.get('/dashboard', function (req, res) {
+  res.sendFile(path.resolve(__dirname, 'public', 'kanban.html'));
+});
+
+app.get('/logout', function (req, res) {
+  req.logout();
+  res.redirect('/');
 });
 
 app.get('/api/cards', function (req, res) {
