@@ -1,4 +1,4 @@
-angular.module('myApp', ['xeditable']);
+angular.module('myApp', ['ngRoute', 'xeditable']);
 
 var myApp = angular.module('myApp');
 
@@ -7,7 +7,15 @@ myApp
     // set up configuration
 
     // Routes
-    
+    $routeProvider
+      .when('/', {
+        templateUrl: '/templates/dashboard.html',
+        controller: 'MyController'
+      })
+      .when('/404', {
+        templateUrl:'/templates/404.html'
+      })
+      .otherwise('/404');
   })
   .run([
     '$rootScope',

@@ -3,20 +3,36 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var sequelize = require('sequelize');
-var db = require('./models');
 var passport = require('passport');
-// var config = require('./config');
+var config = require('./config');
 var methodOverride = require('method-override');
+var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
+var CONFIG = require('./config/config.json');
+var isAuthenticated = require('./middleware/is-authenticated');
+var db = require('./models');
+
+db.sequelize.sync();
 
 var app = express();
+
+app.set('views', 'views');
+app.set('view engine', 'jade');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json({strict: false}));
 
 app.use(express.static(path.resolve(__dirname + '/public')));
 
+app.use(morgan('dev'));
+
 app.get('/', function (req, res) {
-  res.render('index');
+  res.render('login');
+});
+
+app.post('/', function (req, res) {
+  
 });
 
 app.get('/api/cards', function (req, res) {

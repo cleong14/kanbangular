@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kanbangular</title>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/xeditable.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body ng-app="myApp">
+
+  <div ng-view></div>
+
+  <div id="version">Version {{ version }}</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.js"></script>
+  <script src="/bower_components/angular-xeditable/dist/js/xeditable.min.js"></script>
+  <script src="/js/myApp.js" type="text/javascript"></script>
+  <script src="/js/constants.js" type="text/javascript"></script>
+  <script src="/js/services.js" type="text/javascript"></script>
+  <script src="/js/controllers.js" type="text/javascript"></script>
+  <script src="/js/factories.js" type="text/javascript"></script>
+</body>
+</html>
