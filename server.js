@@ -23,7 +23,9 @@ app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json({strict: false}));
 
+app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.static(path.resolve(__dirname + '/public')));
 
@@ -54,9 +56,9 @@ app.get('/', function (req, res) {
   res.render('login');
 });
 
-app.post('/',
+app.post('/login',
   passport.authenticate('local', {
-    successRedirect: '/dashboard',
+    successRedirect: '/welcome',
     failureRedirect: '/create-user'
   })
 );
@@ -70,7 +72,6 @@ function authenticate (username, password) {
   .then(function (user) {
     console.log(user.username, user.password);
     if (user.password === password) {
-      console.log('exists', user);
       return user;
     }
     return false;
@@ -86,7 +87,7 @@ function isAuthenticated (req, res, next) {
   }
   return next();
 }
-console.log(__dirname);
+
 app.get('/dashboard', function (req, res) {
   res.sendFile(path.resolve(__dirname, 'public', 'kanban.html'));
 });
@@ -100,13 +101,14 @@ app.post('/create-user', function (req, res) {
     username: req.body.username,
     password: req.body.password
   })
-  .then(function () {
-    res.redirect('/welcome');
+  .then(function (user) {
+    res.render('welcome', {user: user.username});
   });
 });
 
 app.get('/welcome', function (req, res) {
-  res.render('welcome');
+  console.log(req.user);
+  res.render('welcome', {user: req.user.username});
 });
 
 app.get('/logout', function (req, res) {
