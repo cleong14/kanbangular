@@ -57,7 +57,7 @@ app.get('/', function (req, res) {
 app.post('/',
   passport.authenticate('local', {
     successRedirect: '/dashboard',
-    failureRedirect: '/'
+    failureRedirect: '/create-user'
   })
 );
 
@@ -89,6 +89,24 @@ function isAuthenticated (req, res, next) {
 console.log(__dirname);
 app.get('/dashboard', function (req, res) {
   res.sendFile(path.resolve(__dirname, 'public', 'kanban.html'));
+});
+
+app.get('/create-user', function (req, res) {
+  res.render('create-user');
+});
+
+app.post('/create-user', function (req, res) {
+  db.User.create({
+    username: req.body.username,
+    password: req.body.password
+  })
+  .then(function () {
+    res.redirect('/welcome');
+  });
+});
+
+app.get('/welcome', function (req, res) {
+  res.render('welcome');
 });
 
 app.get('/logout', function (req, res) {

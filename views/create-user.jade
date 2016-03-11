@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+  meta(charset="UTF-8")
+  title Create New User
+  link(rel="stylesheet", href="/css/styles.css")
+body
+  h1(class="header") Create New User
+    form(method='POST', action='/create-user')
+      input(type='text', name='username', placeholder='Username')
+      input(type='password', name='password', placeholder='Password')
+      input(type='submit')

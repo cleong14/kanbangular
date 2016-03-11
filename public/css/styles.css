@@ -13,6 +13,11 @@ body {
   
 }
 
+.links {
+  color: white;
+  padding-left: 25px;
+}
+
 .task {
   text-shadow: 3px 3px #8A8A8A;
   color: white;
