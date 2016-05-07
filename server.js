@@ -12,6 +12,14 @@ var RedisStore = require('connect-redis')(session);
 var CONFIG = require('./config/config.json');
 var isAuthenticated = require('./middleware/is-authenticated');
 var db = require('./models');
+var crypto = require('crypto');
+
+// var cryptoSecret = 'mystical crypto';
+// var hash = crypto.createHmac('sha256', cryptoSecret)
+//                   .update('I love cupcakes')
+//                   .digest('hex');
+
+// console.log(hash);
 
 db.sequelize.sync();
 
@@ -23,7 +31,12 @@ app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json({strict: false}));
 
-app.use(session({ secret: 'keyboard cat' }));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true
+}));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -44,6 +57,23 @@ passport.use(new LocalStrategy(
   }
 ));
 
+// passport.use(new LocalStrategy(
+//   function (username, password, done) {
+//     db.User.find({ where: {username: username, password: crypto.createHash('sha256', 'abcdefg').update(password).digest("hex") } })
+//       .then(function (user) {
+//         if (user !== null) {
+//           console.log('[AUTH] Success with username: ' + user.username + ' and password (md5-hash): ' + user.password);
+//           return done(null, user);
+//         }
+//         else {
+//           console.log('[AUTH] Error with username: ' + username + ' and password:' + password);
+//           console.log('[AUTH] md5-hash of passed password: ' + crypto.createHash('md5').update(password).digest("hex"));
+//           return done(null, false);
+//         }
+//     });
+//   }
+// ));
+
 passport.serializeUser(function (user, done) {
   return done(null, user);
 });
@@ -51,6 +81,16 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (user, done) {
   return done(null, user);
 });
+
+var auth = function (req, res, next) {
+  if (!req.isAuthenticated()){
+    console.log('[AUTH] Error 401');
+    res.send(401);
+  }else{
+    console.log('[AUTH] Success by Session');
+    next();
+  }
+};
 
 app.get('/', function (req, res) {
   res.render('login');
@@ -70,7 +110,6 @@ function authenticate (username, password) {
     }
   })
   .then(function (user) {
-    console.log(user.username, user.password);
     if (user.password === password) {
       return user;
     }
@@ -107,7 +146,6 @@ app.post('/create-user', function (req, res) {
 });
 
 app.get('/welcome', function (req, res) {
-  console.log(req.user);
   res.render('welcome', {user: req.user.username});
 });
 
@@ -135,7 +173,6 @@ app.get('/api/cards/:id', function (req, res) {
 });
 
 app.post('/api/cards', function (req, res) {
-  console.log(req);
   db.Card.create({
     Title: req.body.Title,
     Priority: req.body.Priority,
