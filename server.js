@@ -128,7 +128,7 @@ function isAuthenticated (req, res, next) {
 }
 
 app.get('/dashboard', function (req, res) {
-  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+  res.sendFile(path.resolve(__dirname, 'public', 'kanban.html'));
 });
 
 app.get('/create-user', function (req, res) {
